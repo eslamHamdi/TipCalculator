@@ -111,14 +111,14 @@ fun AddCalculationResult(result:()->String) {
 @Composable
 fun TipApp() {
 
-    var total = remember {
+    val total = remember {
        mutableDoubleStateOf(0.0)
     }
 Column(verticalArrangement = Arrangement.Top, horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier
     .fillMaxHeight()
     .fillMaxWidth()) {
 
-    AddTitleCard(total.value)
+    AddTitleCard(total.doubleValue)
     AddCalculationCard(total)
 }
 
@@ -156,8 +156,8 @@ fun AddCalculationCard(total: MutableDoubleState) {
             mutableFloatStateOf(1f)
         }
 
-        tip.value = (if (Bill.value.isEmpty()) 0.0 else Bill.value.toDouble())*tipPercent.value/100
-        total.doubleValue = ((if (Bill.value.isEmpty()) 0.0 else Bill.value.toDouble())+tip.doubleValue)/persons.value
+        tip.doubleValue = (if (Bill.value.isEmpty()) 0.0 else Bill.value.toDouble())*tipPercent.floatValue/100
+        total.doubleValue = ((if (Bill.value.isEmpty()) 0.0 else Bill.value.toDouble())+tip.doubleValue)/persons.intValue
         Column(verticalArrangement = Arrangement.Top, horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxSize()) {
             CalculationField(Bill)
